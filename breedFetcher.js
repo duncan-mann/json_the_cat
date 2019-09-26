@@ -11,10 +11,9 @@ const fetchBreedDescription = function(breedName, callback) {
     let catJSON = JSON.parse(body);
     if (catJSON.length) {
       catJSON = JSON.parse(body);
-      console.log('Descriptions ->', catJSON[0].description);
-    } else {
-      console.log('Not a valid cat breed');
-    }
+      callback(null, catJSON[0].description.trim());
+      return catJSON[0].description;
+    } ;
   });
 };
 
