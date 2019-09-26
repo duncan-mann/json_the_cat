@@ -4,7 +4,7 @@ const fetchBreedDescription = function(breedName, callback) {
   let URL = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`;
   request(URL, (error, response, body) => {
     if (error) {
-      callback(error, response);
+      callback(error, "Invalid URL");
       return;
     }
 
@@ -13,11 +13,13 @@ const fetchBreedDescription = function(breedName, callback) {
       catJSON = JSON.parse(body);
       callback(null, catJSON[0].description.trim());
       return catJSON[0].description;
-    } ;
+    } else {
+      callback(null, "This cat does not exist!")
+    };
   });
 };
 
-module.exports = { fetchBreedDescription };
+module.exports = {fetchBreedDescription };
 
 
 

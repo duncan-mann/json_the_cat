@@ -11,5 +11,15 @@ describe('fetchBreedDescription', () => {
       assert.equal(expectedDesc, desc);
       done();
     });
+  })
+    it('Should return a description of "null" if the link does not exist', (done) => {
+      fetchBreedDescription('Wohoo', (err, desc) => {
+        // we expect no error for this scenario
+        assert.equal(err, null);
+        // compare returned description
+        const expectedDesc = "This cat does not exist!";
+        assert.equal(expectedDesc, desc);
+        done();
+      });
   });
 });
